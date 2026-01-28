@@ -12,3 +12,41 @@ const myWeek = [
 // I think Hanging out with friends will have the highest enjoyment out of all activities.
 // The category that'll dominate most of my week will be physical.
 // A pattern I suspect is that afternoons have higher overall enjoyment because thats usually when I have the most free time.
+
+// Finds how many total hours were spent doing physical activities
+function totalPhysicalHours(data) {
+  const physical = data.filter(item => item.category === "physical");
+  return physical.reduce((sum, act) => sum + act.hoursSpent, 0);
+}
+
+// Finds the average enjoyment score for a certain time of day 
+function averageEnjoymentByTime(time) {
+  const match = myWeek.filter(a => a.timeOfDay === time);
+  if (match.length === 0) return 0;
+
+  const total = match.reduce((sum, a) => sum + a.enjoyment, 0);
+  return (total / match.length).toFixed(1);
+}
+
+// Custom higher order function 
+function filterByCondition(testFn) {
+  return myWeek.filter(testFn);
+}
+
+const shortFun = filterByCondition(a => a.hoursSpent < 2 && a.enjoyment > 8);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
